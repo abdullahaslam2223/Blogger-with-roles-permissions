@@ -18,7 +18,7 @@ const BlogList: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="w-1/2 mx-auto py-10">
       {blogs && blogs.map((blog) => <BlogRow key={blog.id} blog={blog} />)}
     </div>
   );

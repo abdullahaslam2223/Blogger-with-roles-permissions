@@ -1,7 +1,12 @@
 import Blog from "./Components/Blog/Blog";
+import { RoleProvider } from "./Contexts/Role/RoleContext";
 
 function App() {
-  return <Blog />;
+  return (
+    <RoleProvider>
+      <Blog />
+    </RoleProvider>
+  );
 }
 
 export default App;
