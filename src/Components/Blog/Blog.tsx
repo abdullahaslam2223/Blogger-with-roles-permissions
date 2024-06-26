@@ -4,7 +4,7 @@ const Blog = () => {
   return (
     <>
       <h1 className="text-center p-4 bg-green-500 text-white font-semibold">
-        Main Blog Page
+        Blogs
       </h1>
       <div className="bg-gray-100">
         <BlogList />

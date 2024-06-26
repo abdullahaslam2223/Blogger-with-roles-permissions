@@ -1,12 +1,13 @@
 import React from "react";
 import BlogRow from "./BlogRow";
 import { Blog } from "./types";
+import Action from "../Utils/Action";
 
 const BlogList: React.FC = () => {
   const [blogs, setBlogs] = React.useState<Blog[] | null>(null);
 
   async function fetchBlogs() {
-    const response = await fetch("http://localhost:3000/blogs");
+    const response = await fetch("http://localhost:3000/blog");
     const data = await response.json();
     setBlogs(data);
   }
@@ -19,7 +20,10 @@ const BlogList: React.FC = () => {
 
   return (
     <div className="w-1/2 mx-auto py-10">
-      {blogs && blogs.map((blog) => <BlogRow key={blog.id} blog={blog} />)}
+      <Action handleClick={() => {}} text="Add" />
+      <div className="mt-1">
+        {blogs && blogs.map((blog) => <BlogRow key={blog.id} blog={blog} />)}
+      </div>
     </div>
   );
 };
