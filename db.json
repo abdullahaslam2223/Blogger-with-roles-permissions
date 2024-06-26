@@ -1,0 +1,16 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Hello World",
+      "content": "This is a hello world blog, just a dummy content",
+      "author": "Abdullah"
+    },
+    {
+      "id": 2,
+      "title": "BMS Digital",
+      "content": "At BMS Digital, we specialize in crafting tailored digital solutions to propel your business forward. Our services range from captivating website development and seamless mobile app creation to robust API implementations. We prioritize user experience, performance, security, and scalability in every project, ensuring your digital solutions meet current needs and grow with your business. With a client-centric approach, experienced team, and commitment to cutting-edge technology, we deliver innovative and effective results. Contact us today to transform your digital presence and achieve your goals.",
+      "author": "Abdullah Aslam"
+    }
+  ]
+}
