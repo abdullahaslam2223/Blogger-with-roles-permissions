@@ -2,11 +2,11 @@ import React from "react";
 import Action from "../Utils/Action";
 import { Blog } from "./types";
 import { UserContext } from "../../Contexts/User/UserContext";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 const BlogRow: React.FC<Blog> = ({ blog }) => {
   const { user } = React.useContext(UserContext);
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const handleViewClick = (): void => {
     navigate("/blog/" + blog.id);
   };

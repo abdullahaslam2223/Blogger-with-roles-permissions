@@ -2,25 +2,22 @@ import React from "react";
 import BlogRow from "./BlogRow";
 import { Blog } from "./types";
 import Action from "../Utils/Action";
-import { UserContext } from "../../Contexts/User/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 
 const BlogList: React.FC = () => {
-  const navigate = useNavigate();
-  const { user } = React.useContext(UserContext);
-  console.log("Role ", user);
+  const navigate: NavigateFunction = useNavigate();
   const [blogs, setBlogs] = React.useState<Blog[] | null>(null);
-  const handleAddBlog = () => {
+  const handleAddBlog = (): void => {
     navigate("/add-blog");
   };
 
-  async function fetchBlogs() {
+  async function fetchBlogs(): Promise<void> {
     const response = await fetch("http://localhost:3000/blog");
     const data = await response.json();
     setBlogs(data);
   }
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     fetchBlogs();
   }, []);
 

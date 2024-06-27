@@ -2,11 +2,10 @@ import React from "react";
 import { ChangeEvent } from "react";
 
 const AddBlog: React.FC = () => {
-  const url = new URL(window.location.href);
+  const url: URL = new URL(window.location.href);
+  const queryParams: URLSearchParams = new URLSearchParams(url.search);
+  const id: string | null = queryParams.get("id");
 
-  const queryParams = new URLSearchParams(url.search);
-  const id = queryParams.get("id");
-  console.log(queryParams);
   const handleEditBlog = async (): Promise<void> => {
     if (id) {
       const response = await fetch("http://localhost:3000/blog/" + id);
@@ -16,13 +15,15 @@ const AddBlog: React.FC = () => {
       setContent(json.content);
     }
   };
+
   React.useEffect((): void => {
     handleEditBlog();
   }, []);
+
   const [title, setTitle] = React.useState<string | undefined>(undefined);
   const [content, setContent] = React.useState<string | undefined>(undefined);
   const [author, setAuthor] = React.useState<string | undefined>(undefined);
-  const handleSubmit = async () => {
+  const handleSubmit = async (): Promise<void> => {
     const url = id
       ? "http://localhost:3000/blog/" + id
       : "http://localhost:3000/blog";
@@ -41,6 +42,7 @@ const AddBlog: React.FC = () => {
     const json = await response.json();
     console.log(json);
   };
+
   return (
     <div className="bg-gray-200">
       <form
@@ -71,7 +73,7 @@ const AddBlog: React.FC = () => {
           className="p-2 mb-2"
           placeholder="Content"
           value={content}
-          rows="5"
+          rows={5}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
             setContent(e.target.value);
           }}

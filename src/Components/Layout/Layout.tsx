@@ -1,10 +1,11 @@
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { NavigateFunction, Outlet, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/User/UserContext";
+import { User } from "../Blog/types";
 const Layout = () => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const { user, setUser } = React.useContext(UserContext);
-  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+  const loggedInUser: User = JSON.parse(localStorage.getItem("user"));
   React.useEffect((): void => {
     if (loggedInUser) {
       setUser(loggedInUser);

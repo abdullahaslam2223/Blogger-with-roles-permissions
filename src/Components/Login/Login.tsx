@@ -1,9 +1,9 @@
 import React, { FormEvent, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/User/UserContext";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const { setUser } = React.useContext(UserContext);
   const [selectedRole, setSelectedRole] = React.useState<string>("user");
   const [email, setEmail] = React.useState<string | undefined>(undefined);
@@ -19,7 +19,6 @@ const Login = () => {
     setUser(user);
   };
 
-  // console.log(selectedRole);
   return (
     <div className="bg-gray-200">
       <form

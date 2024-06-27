@@ -1,6 +1,7 @@
+import React from "react";
 import BlogList from "./BlogList";
 
-const Blog = () => {
+const Blog = (): React.FC => {
   return (
     <>
       <div className="bg-gray-100">
