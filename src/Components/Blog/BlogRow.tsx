@@ -1,12 +1,11 @@
 import React from "react";
 import Action from "../Utils/Action";
 import { Blog } from "./types";
-import { RoleContext } from "../../Contexts/Role/RoleContext";
+import { UserContext } from "../../Contexts/Role/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const BlogRow: React.FC<Blog> = ({ blog }) => {
-  const { role, setRole } = React.useContext(RoleContext);
-  setRole("admin");
+  const { user } = React.useContext(UserContext);
   const navigate = useNavigate();
   const handleViewClick = () => {
     navigate("/blog/" + blog.id);
@@ -17,12 +16,16 @@ const BlogRow: React.FC<Blog> = ({ blog }) => {
       <p className="mr-5">{blog?.content?.slice(0, 50)}...</p>
       <div>
         <Action handleClick={handleViewClick} text="View" />
-        {role === "admin" || role === "manager" ? (
+        {user.role === "admin" || user.role === "manager" ? (
           <Action handleClick={() => {}} text="Edit" />
         ) : (
           ""
         )}
-        {role == "admin" ? <Action handleClick={() => {}} text="Delete" /> : ""}
+        {user.role == "admin" ? (
+          <Action handleClick={() => {}} text="Delete" />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
