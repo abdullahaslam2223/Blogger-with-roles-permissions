@@ -10,9 +10,10 @@ import {
 } from "react-router-dom";
 import BlogDetails from "./Components/Blog/BlogDetails";
 import Login from "./Components/Login/Login.tsx";
-import { UserProvider } from "./Contexts/Role/UserContext.tsx";
+import { UserProvider } from "./Contexts/User/UserContext.tsx";
 import PrivateRoute from "./Components/Auth/PrivateRoute.tsx";
 import Layout from "./Components/Layout/Layout.tsx";
+import AddBlog from "./Components/Blog/AddBlog.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<PrivateRoute />}>
           <Route path="blog" element={<App />} />
           <Route path="blog/:id" element={<BlogDetails />} />
+          <Route path="add-blog" element={<AddBlog />} />
         </Route>
       </Route>
     </>

@@ -1,14 +1,27 @@
 import React from "react";
 import Action from "../Utils/Action";
 import { Blog } from "./types";
-import { UserContext } from "../../Contexts/Role/UserContext";
+import { UserContext } from "../../Contexts/User/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const BlogRow: React.FC<Blog> = ({ blog }) => {
   const { user } = React.useContext(UserContext);
   const navigate = useNavigate();
-  const handleViewClick = () => {
+  const handleViewClick = (): void => {
     navigate("/blog/" + blog.id);
+  };
+  const handleEditBlog = (): void => {
+    navigate("/add-blog?id=" + blog.id);
+  };
+  const handleDeleteClick = async (): Promise<void> => {
+    const confirmation = confirm("Do you want to delete this blog?");
+    if (confirmation) {
+      const response = await fetch("http://localhost:3000/blog/" + blog.id, {
+        method: "DELETE",
+      });
+      const json = await response.json();
+      console.log(json);
+    }
   };
 
   return (
@@ -17,12 +30,12 @@ const BlogRow: React.FC<Blog> = ({ blog }) => {
       <div>
         <Action handleClick={handleViewClick} text="View" />
         {user.role === "admin" || user.role === "manager" ? (
-          <Action handleClick={() => {}} text="Edit" />
+          <Action handleClick={handleEditBlog} text="Edit" />
         ) : (
           ""
         )}
         {user.role == "admin" ? (
-          <Action handleClick={() => {}} text="Delete" />
+          <Action handleClick={handleDeleteClick} text="Delete" />
         ) : (
           ""
         )}

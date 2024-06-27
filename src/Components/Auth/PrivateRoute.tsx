@@ -1,5 +1,5 @@
 import React from "react";
-import { UserContext } from "../../Contexts/Role/UserContext";
+import { UserContext } from "../../Contexts/User/UserContext";
 import { Outlet, Navigate } from "react-router-dom";
 
 const PrivateRoute: React.FC = () => {
